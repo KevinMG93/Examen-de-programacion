@@ -44,11 +44,11 @@ public class DB {
 			//Muestra el contenido de delincuentes de nuestra base de datos
 				Coche D =new Coche();
 				//Coje los datos para mostrarlos
-				((int)conjuntoResultados.getObject("horaentrada"),
-				(String)conjuntoResultados.getObject("coche"),
+				((String)conjuntoResultados.getObject("coche"),
+				(int)conjuntoResultados.getObject("horaentrada"),
 				(int)conjuntoResultados.getObject("horasalida"),
-				(int)conjuntoResultados.getObject("precio"),
-				listadoCoches.addItem(D);
+				(int)conjuntoResultados.getObject("precio"));
+				listadocoches.addItem(D);
 			
 			}
 			conjuntoResultados.close();
