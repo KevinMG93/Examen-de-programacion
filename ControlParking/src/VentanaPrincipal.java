@@ -21,7 +21,9 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField horaEntradaTxt;
 	private JTextField horaSalidaTxt;
 	private JTextField precioPagarTxt;
-
+	private Coche coche;
+	private JComboBox <Coche> coches;
+ 
 	/**
 	 * Launch the application.
 	 */
@@ -50,9 +52,26 @@ public class VentanaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox listadoCoches = new JComboBox();
-		listadoCoches.setBounds(10, 29, 414, 20);
-		contentPane.add(listadoCoches);
+		coches = new JComboBox();
+		coches.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				coche=coches.getItemAt(coches.getSelectedIndex());
+				if(coche!=null)
+				{
+					
+					// Muestre los datos
+					matriculaTxt.setText(coche.getcoche());
+					horaEntradaTxt.setText(String.valueOf(coche.gethoraentrada()));
+					horaSalidaTxt.setText(String.valueOf(coche.gethorasalida()));
+					precioPagarTxt.setText(String.valueOf(coche.getprecio()));
+					
+					}
+				
+			}
+		});
+		coches.setBounds(10, 29, 414, 20);
+		contentPane.add(coches);
 		
 		JLabel lblListadoDeCoches = new JLabel("Listado de coches");
 		lblListadoDeCoches.setBounds(10, 4, 151, 14);
@@ -96,6 +115,36 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(precioPagarTxt);
 		
 		JButton btnNewButton = new JButton("A PAGAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(matriculaTxt.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"Error");
+				}
+				else if	(horaEntradaTxt.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"Debe ser un numero entre 0 y 23");
+				}
+				else if	(horaSalidaTxt.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"Debe ser un numero entre 0 y 23");
+				}
+				else if	(precioPagarTxt.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"Error");
+				}
+				
+				else {
+				
+				Coche D =new Coche();	
+				
+				D.setcoche(matriculaTxt.getText());
+				D.sethoraentrada(Integer.parseInt(horaEntradaTxt.getText()));
+				D.sethorasalida(Integer.parseInt(horaSalidaTxt.getText()));
+				D.setprecio(Integer.parseInt(precioPagarTxt.getText()));
+			
+				coches.addItem(D);
+				}
+				
+			}
+		});
 		btnNewButton.setBounds(230, 58, 194, 128);
 		contentPane.add(btnNewButton);
 		
