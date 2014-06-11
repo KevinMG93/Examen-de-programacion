@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 
 
+
 import javax.swing.JComboBox;
 
 import com.mysql.jdbc.Statement;
@@ -26,7 +27,12 @@ public class DB {
 			instruccion = (Statement) conexion.createStatement();
 			}catch( SQLException excepcionSql ){
 			excepcionSql.printStackTrace();
+			}
+			catch( ClassNotFoundException noEncontroClase )
+			{
+				noEncontroClase.printStackTrace();
 			}// fin de catch
+			// fin de catch
 	}
 	
 	public void leerCoches(){
